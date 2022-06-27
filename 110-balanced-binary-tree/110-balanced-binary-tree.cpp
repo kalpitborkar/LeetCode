@@ -13,15 +13,17 @@ class Solution {
 public:
     bool isBalanced(TreeNode* root) {
         if(!root) return true;
-        return std::abs(height(root->left) - height(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right);
+        return
+            std::abs(calculateHeight(root->left) - calculateHeight(root->right)) <= 1 &&
+            isBalanced(root->left) &&
+            isBalanced(root->right);
     }
     
-    int height(TreeNode *root)
+    int calculateHeight(TreeNode *root)
     {
         if(!root) return 0;
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
-        
+        int leftHeight = calculateHeight(root->left);
+        int rightHeight = calculateHeight(root->right);
         return 1 + std::max(leftHeight, rightHeight);
     }
 };
